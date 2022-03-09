@@ -1,5 +1,11 @@
 #include <cstdlib>  // needed for EXIT_SUCCESS and EXIT_FAILURE
-#include <iostream> // needed for cout and cin
+#include <iostream> // needed for std::cout and std::cin
+#include <limits>   // needed for std::numeric_limits
+
+void ignoreLine()
+{
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
 
 float calculateTorus(float minorRadius, float majorRadius)
 {
@@ -12,6 +18,15 @@ float calculateTorus(float minorRadius, float majorRadius)
   return calculatedVolume;
 }
 
+float getFloat()
+{
+  std::cout << "Enter a float value: ";
+  float val{};
+  std::cin >> val;
+
+  return val;
+}
+
 int main()
 {
   // I want the program to exit with a failure error code if it doesn't succeed,
@@ -19,33 +34,39 @@ int main()
   // that represents the exit status
   int statusToReturn{ };
 
-  std::cout << "Enter minor radius: ";
-  int minorRadiusInput{};
-  std::cin >> minorRadiusInput;
+  std::cout << "This program will calculate the volume of a torus." << '\n';
+  std::cout << "You will start by entering a value for the minor radius." << '\n';
+  float minorRadiusInput{ getFloat() };
+  // std::cout << "Enter minor radius: ";
+  // int minorRadiusInput{};
+  // std::cin >> minorRadiusInput;
 
-  std::cout << "Enter major radius: ";
-  int majorRadiusInput{};
-  std::cin >> majorRadiusInput;
+  std::cout << "Next, you will enter a value for the major radius." << '\n';
+  float majorRadiusInput{ getFloat() };
+  // std::cout << "Enter major radius: ";
+  // int majorRadiusInput{};
+  // std::cin >> majorRadiusInput;
 
-  // this is another variable only used once, but it's much more readable than
-  // calling the function in the print statement
-  float volume{ calculateTorus(minorRadiusInput, majorRadiusInput) };
 
   // The major radius of a torus is larger than the minor radius, so check that!
   if (minorRadiusInput < majorRadiusInput)
   {
+    // this is another variable only used once, but it's much more readable than
+    // calling the function in the print statement
+    float volume{ calculateTorus(minorRadiusInput, majorRadiusInput) };
+    
     std::cout << "Your calculated torus volume is: "
     << volume
     << '\n';
     // the calculation succeeded, so we want the exit code to reflect that
-    statusToReturn = { EXIT_SUCCESS };
+    statusToReturn = EXIT_SUCCESS;
   }
   else
   {
     std::cerr << "ERROR: Your major radius needs to be larger than your minor radius"
     << '\n';
     // The code failed, so we want the program to exit with an error
-    statusToReturn = { EXIT_FAILURE };
+    statusToReturn = EXIT_FAILURE;
   }
 
   return statusToReturn;
