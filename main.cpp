@@ -32,7 +32,7 @@ float getFloat()
       ignoreLine();
       std::cout << "Not valid input, so try again!" << '\n';
     }
-    else if (val <= 0) //
+    else if (val <= 0) //check that the value is positive!
     {
       std::cin.clear(); // clear the error and go back to normal operation
       ignoreLine();
