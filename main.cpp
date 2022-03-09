@@ -8,6 +8,17 @@ float calculateTorus(float minorRadius, float majorRadius)
 
 int main()
 {
-  std::cout << "Torus volume is: " << calculateTorus(3, 4) << '\n';
+  std::cout << "Enter minor radius: ";
+  int minorRadiusInput { };
+  std::cin >> minorRadiusInput;
+
+  std::cout << "Enter major radius: ";
+  int majorRadiusInput { };
+  std::cin >> majorRadiusInput;
+
+  std::cout << "Your calculated torus volume is: "
+            << calculateTorus(minorRadiusInput, majorRadiusInput)
+            << '\n';
+
   return 0;
 }
