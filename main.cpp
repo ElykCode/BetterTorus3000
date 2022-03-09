@@ -16,6 +16,7 @@ int main()
   int majorRadiusInput { };
   std::cin >> majorRadiusInput;
 
+  // The major radius of a torus is larger than the minor radius, so check that!
   if (minorRadiusInput < majorRadiusInput)
   {
     std::cout << "Your calculated torus volume is: "
