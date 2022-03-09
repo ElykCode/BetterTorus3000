@@ -16,9 +16,17 @@ int main()
   int majorRadiusInput { };
   std::cin >> majorRadiusInput;
 
-  std::cout << "Your calculated torus volume is: "
-            << calculateTorus(minorRadiusInput, majorRadiusInput)
-            << '\n';
+  if (minorRadiusInput < majorRadiusInput)
+  {
+    std::cout << "Your calculated torus volume is: "
+    << calculateTorus(minorRadiusInput, majorRadiusInput)
+    << '\n';
+  }
+  else
+  {
+    std::cerr << "ERROR: Your major radius needs to be larger than your minor radius"
+    << '\n';
+  }
 
   return 0;
 }
